@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import Head from 'next/head'
-import {Row, Col , Icon ,Breadcrumb  } from 'antd'
+import {Row, Col , Icon ,Breadcrumb, Affix} from 'antd'
 
 import Header from '../components/Header'
 import Author from '../components/Author'
@@ -13,6 +13,8 @@ import {
   FireOutlined
 } from '@ant-design/icons';
 import ReactMarkdown from 'react-markdown'
+import 'markdown-navbar/dist/navbar.css'
+import MarkNav from 'markdown-navbar'
 
 const Detailed = () =>{
   let markdown='# P01:课程介绍和环境搭建\n' +
@@ -92,7 +94,18 @@ return (
       <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
           <Author />
           <Advert />
-
+          <Affix offsetTop = {5}>
+          <div className = "detailed-nav comm-box">
+            <div className = "nav-title">
+              目录
+            </div>
+            <MarkNav
+              className = "article-menu"
+              source = {markdown}
+              ordered = {false} 
+            />
+          </div>
+          </Affix>
         </Col>
       </Row>
       <Footer/>
