@@ -11,6 +11,7 @@ import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import Tocify from '../components/tocify.tsx'
+import servicePath from '../config/apiUrl'
 
 import '../static/style/pages/detailed.css'
 import 'markdown-navbar/dist/navbar.css'
@@ -65,7 +66,7 @@ return (
 
            <div>
               <div className="detailed-title">
-              React实战视频教程-技术胖Blog开发(更新08集)
+              Zhaoyu Cheng Blog Test Part
               </div>
 
               <div className="list-icon center">
@@ -109,7 +110,7 @@ Detailed.getInitialProps = async(context)=>{
   let id =context.query.id
   const promise = new Promise((resolve)=>{
 
-    axios('http://127.0.0.1:7001/default/getArticleById/'+id).then(
+    axios(servicePath.getArticleById+id).then(
       (res)=>{
         console.log(res)
         resolve(res.data.data[0])
