@@ -1,21 +1,22 @@
 import React,{useState} from 'react'
 import Head from 'next/head'
 import {Row, Col , Icon ,Breadcrumb, Affix} from 'antd'
+import ReactMarkdown from 'react-markdown'
+import MarkNav from 'markdown-navbar'
+import axios from 'axios'
 
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
+
 import '../static/style/pages/detailed.css'
+import 'markdown-navbar/dist/navbar.css'
 import {
   CalendarOutlined,
   FolderOpenOutlined,
   FireOutlined
 } from '@ant-design/icons';
-import ReactMarkdown from 'react-markdown'
-import 'markdown-navbar/dist/navbar.css'
-import MarkNav from 'markdown-navbar'
-import axios from 'axios'
 
 const Detailed = () =>{
   let markdown='# P01:课程介绍和环境搭建\n' +
@@ -64,8 +65,8 @@ return (
           <div>
             <div className="bread-div">
               <Breadcrumb>
-                <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
-                <Breadcrumb.Item>视频列表</Breadcrumb.Item>
+                <Breadcrumb.Item><a href="/">Main Page</a></Breadcrumb.Item>
+                <Breadcrumb.Item>List</Breadcrumb.Item>
                 <Breadcrumb.Item>xxxx</Breadcrumb.Item>
               </Breadcrumb>
             </div>
