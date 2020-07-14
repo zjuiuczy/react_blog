@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import {
+import {Route} from 'react-router-dom';
+import { 
   DesktopOutlined,
   PieChartOutlined,
   FileOutlined,
@@ -8,6 +9,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import '../static/css/adminindex.css';
+import AddArticle from './AddArticle';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -47,7 +49,7 @@ function AdminIndex() {
               <Breadcrumb.Item>WorkStation</Breadcrumb.Item>
             </Breadcrumb>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              Zhaoyu Cheng 's blog management system.
+              "Zhaoyu Cheng 's blog management system."
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Zhaoyu Cheng ©2020 </Footer>
