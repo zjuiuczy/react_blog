@@ -10,7 +10,7 @@ import {
     SmileOutlined,
     HomeOutlined,
     YoutubeOutlined,
-    FileTextOutlined
+    FileTextOutlined,
   } from '@ant-design/icons';
 
 const Header = () => {
@@ -61,8 +61,7 @@ const Header = () => {
                     {
                         navArray.map((item)=>{
                             return(
-                                <Menu.Item key = {item.Id}>
-                                    <SmileOutlined />
+                                <Menu.Item key = {item.Id}> 
                                     {item.typeName}
                                 </Menu.Item>
                             )
