@@ -49,7 +49,9 @@ function AdminIndex() {
               <Breadcrumb.Item>WorkStation</Breadcrumb.Item>
             </Breadcrumb>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              "Zhaoyu Cheng 's blog management system."
+              <div>
+                <Route path = "/index/" exact component = {AddArticle}    />
+              </div>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Zhaoyu Cheng ©2020 </Footer>
