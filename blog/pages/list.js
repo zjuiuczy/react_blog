@@ -2,11 +2,16 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React, {useState, useEffect} from 'react'
 import {Row, Col, List, Icon, Breadcrumb} from 'antd'
+import marked from 'marked'
+import hljs from 'highlight.js'
+import '../static/style/pages/list.css'
 import {
   CalendarOutlined,
   FolderOpenOutlined,
-  FireOutlined
+  FireOutlined,
+  FileOutlined
 } from '@ant-design/icons';
+import 'highlight.js/styles/monokai-sublime.css'
 import axios from 'axios'
 import Header from '../components/Header'
 import Author from '../components/Author'
@@ -23,6 +28,23 @@ const MyList = (list) =>{
   useEffect(()=>{
     setMylist(list.data)
   })
+  const renderer = new marked.Renderer();
+  marked.setOptions({
+    renderer: renderer,
+    gfm: true,
+    pedantic: false,
+    sanitize: false,
+    tables: true,
+    breaks: false,
+    smartLists: true,
+    smartypants: false,
+    sanitize:false,
+    xhtml: false,
+    highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+    }
+
+  }); 
   return (
     <div>
     <Head>
@@ -54,7 +76,18 @@ const MyList = (list) =>{
                 <span><FolderOpenOutlined /> {item.typeName}</span>
                 <span><FireOutlined /> {item.view_count}</span>
               </div>
-              <div className = "list-context">{item.introduce}</div>
+              <div className = "list-context"
+              dangerouslySetInnerHTML={{__html:marked(item.introduce)}}
+              >
+              </div>
+              <div className = "list-go">
+              <FileOutlined /> &nbsp;
+              <span>
+                <Link href = {{pathname:'/detailed', query:{id:item.id}}}>
+                  Full Text
+                </Link>
+              </span>
+              </div>
               </List.Item>
             )
 

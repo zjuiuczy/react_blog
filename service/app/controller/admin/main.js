@@ -89,6 +89,7 @@ class MainController extends Controller{
         const result = await this.app.mysql.query(sql)
         this.ctx.body={data:result}
     }
+    
 
 }
 

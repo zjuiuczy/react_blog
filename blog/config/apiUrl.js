@@ -5,5 +5,6 @@ let servicePath = {
     getArticleById:ipUrl + 'getArticleById/',  // Article detials, requiring id
     getTypeInfo:ipUrl + 'getTypeInfo/', // article type info
     getListById:ipUrl + 'getListById/' , // get article list by type Id
+    getAllPartCount: ipUrl + 'getAllPartCount',
 }
 export default servicePath;

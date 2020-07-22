@@ -15,7 +15,9 @@ class HomeController extends Controller {
               "FROM_UNIXTIME(article.addTime, '%Y-%m-%d %H:%i:%s') as addTime," +
               'article.view_count as view_count,' +
               '.type.typeName as typeName ' +
-              'FROM article LEFT JOIN type on article.type_id = type.id';
+              'FROM article LEFT JOIN type on article.type_id = type.Id ' +
+              'WHERE article.isTop = 0 ' +
+              'ORDER BY article.id ASC';
     const results = await this.app.mysql.query(sql)
 
     this.ctx.body = {data: results}
@@ -58,6 +60,15 @@ class HomeController extends Controller {
     const result = await this.app.mysql.query(sql);
     this.ctx.body = { data: result };
 
+}
+async getAllPartCount(){
+
+  let sql = 'SELECT '+
+        'SUM(view_count) as all_view_count '+
+        'FROM article'
+        
+        const result = await this.app.mysql.query(sql)
+        this.ctx.body={data:result}
 }
 
 

@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import React, {useState} from 'react'
-import {Row, Col, List, Icon} from 'antd'
+import {Row, Col, List, Icon, Tag} from 'antd'
 import {
   CalendarOutlined,
   FolderOpenOutlined,
-  FireOutlined
+  FireOutlined,
+  FileOutlined
 } from '@ant-design/icons';
 import axios from 'axios'
 import marked from 'marked'
@@ -32,6 +33,8 @@ const Home = (list) =>{
     breaks: false,
     smartLists: true,
     smartypants: false,
+    // sanitize: false,
+    // xhtml: false,
       highlight: function (code) {
              return hljs.highlightAuto(code).value;
      }
@@ -56,12 +59,21 @@ const Home = (list) =>{
               </Link>
               </div>
               <div className="list-icon">
+                <span><Tag color = "#f50">TOP</Tag></span>
                 <span><CalendarOutlined /> {item.addTime}</span>
                 <span><FolderOpenOutlined />{item.typeName}</span>
                 <span><FireOutlined /> {item.view_count}</span>
               </div>
               <div className="list-content" 
               dangerouslySetInnerHTML={{ __html: marked(item.introduce) }}>
+              </div>
+              <div className = "list-go">
+              <FileOutlined /> &nbsp;
+              <span>
+                <Link href = {{pathname:'/detailed', query:{id:item.id}}}>
+                  Full Text
+                </Link>
+              </span>
               </div>
               </List.Item>
             )

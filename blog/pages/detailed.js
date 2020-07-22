@@ -1,6 +1,6 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import Head from 'next/head'
-import {Row, Col , Icon ,Breadcrumb, Affix} from 'antd'
+import {Row, Col , Icon ,Breadcrumb, Affix, Skeleton} from 'antd'
 import MarkNav from 'markdown-navbar'
 import axios from 'axios'
 import marked from 'marked'
@@ -14,7 +14,6 @@ import Tocify from '../components/tocify.tsx'
 import servicePath from '../config/apiUrl'
 
 import '../static/style/pages/detailed.css'
-import 'markdown-navbar/dist/navbar.css'
 import 'highlight.js/styles/monokai-sublime.css'
 
 import {
@@ -24,6 +23,23 @@ import {
 } from '@ant-design/icons';
 
 const Detailed = (props) =>{
+  useEffect( ()=>{
+
+    setTimeout(()=>{
+      myFuction()
+    },100)
+  },[])
+  const [loading,setLoading] = useState(true)
+ 
+
+  const myFuction = async ()=>{
+
+      let newhtml =await marked(props.article_content)
+      //setHtml(newhtml)
+      setLoading(false)
+      //console.log(tocify.render())
+      
+  }
 const tocify = new Tocify()
 const renderer = new marked.Renderer();
 renderer.heading = function(text, level, raw) {
@@ -59,20 +75,20 @@ return (
             <div className="bread-div">
               <Breadcrumb>
                 <Breadcrumb.Item><a href="/">Main Page</a></Breadcrumb.Item>
-                <Breadcrumb.Item>List</Breadcrumb.Item>
-                <Breadcrumb.Item>xxxx</Breadcrumb.Item>
+                <Breadcrumb.Item>{props.typeName}</Breadcrumb.Item>
+                <Breadcrumb.Item>{props.title}</Breadcrumb.Item>
               </Breadcrumb>
             </div>
 
            <div>
               <div className="detailed-title">
-              Zhaoyu Cheng Blog Test Part
+              {props.title}
               </div>
 
               <div className="list-icon center">
-                <span><CalendarOutlined /> 2020-07-10</span>
-                <span><FolderOpenOutlined /> 视频教程</span>
-                <span><FireOutlined /> 5000人</span>
+                <span><CalendarOutlined /> {props.addTime}</span>
+                <span><FolderOpenOutlined /> {props.typeName}</span>
+                <span><FireOutlined /> {props.view_count}</span>
               </div>
 
               <div className="detailed-content" 
@@ -89,11 +105,13 @@ return (
           <Affix offsetTop = {5}>
           <div className = "detailed-nav comm-box">
             <div className = "nav-title">
-              目录
+              Catalog
             </div>
+            <Skeleton loading={loading} active paragraph={{ rows: 6 }} >
             <div className = "toc-list">
               {tocify && tocify.render()}
             </div>
+            </Skeleton>
           </div>
           </Affix>
         </Col>
