@@ -46,7 +46,7 @@ const Header = () => {
                 <span className="header-logo">
                      Zhaoyu Cheng
                 </span>
-                <span className="header-txt">cs and love</span>
+                <span className="header-txt">CS and Love</span>
             </Col>
 
             <Col xs={0} sm={0} md={14} lg={8} xl={6}>

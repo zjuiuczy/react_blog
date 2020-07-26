@@ -46,3 +46,20 @@ body{
   margin-right: 20px;
   color:#bbb;
 }
+.list-header{
+  font-size: 1.4rem;
+  padding-left:0.6rem;
+}
+.bbd-img{
+  border-radius: 4px;
+  width: 40%;
+}
+.bbd-zi{
+  color: #888;
+}
+.bbd-title{
+  margin-top:10px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}

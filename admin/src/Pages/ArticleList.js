@@ -52,20 +52,20 @@ function ArticleList(props){
                 header={
                     <Row className="list-div">
                         <Col span={8}>
-                            <b>标题</b>
+                            <b>Title</b>
                         </Col>
                         <Col span={3}>
-                            <b>类别</b>
+                            <b>Type</b>
                         </Col>
                         <Col span={3}>
-                            <b>发布时间</b>
+                            <b>Publish Time</b>
                         </Col>
                         <Col span={3}>
-                            <b>浏览量</b>
+                            <b>Views</b>
                         </Col>
 
                         <Col span={4}>
-                            <b>操作</b>
+                            <b>Operation</b>
                         </Col>
                     </Row>
 
@@ -89,8 +89,8 @@ function ArticleList(props){
                             </Col>
 
                             <Col span={4}>
-                              <Button type="primary" onClick = {()=>{updateArticle(item.id)}}>修改</Button>&nbsp;
-                              <Button onClick = {()=>{delArticle(item.id)}}>删除 </Button>
+                              <Button type="primary" onClick = {()=>{updateArticle(item.id)}}>Edit</Button>&nbsp;
+                              <Button onClick = {()=>{delArticle(item.id)}}>Delete </Button>
                             </Col>
                         </Row>
 

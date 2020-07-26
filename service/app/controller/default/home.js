@@ -9,7 +9,8 @@ class HomeController extends Controller {
     this.ctx.body = result;
   }
   async getArticleList() {
-    const sql = 'SELECT article.id  as id,' +
+    //toplist
+    const sql1 = 'SELECT article.id  as id,' +
               'article.title as title,' +
               'article.introduce as introduce,' +
               "FROM_UNIXTIME(article.addTime, '%Y-%m-%d %H:%i:%s') as addTime," +
@@ -18,9 +19,23 @@ class HomeController extends Controller {
               'FROM article LEFT JOIN type on article.type_id = type.Id ' +
               'WHERE article.isTop = 0 ' +
               'ORDER BY article.id ASC';
-    const results = await this.app.mysql.query(sql)
-
-    this.ctx.body = {data: results}
+    const topres = await this.app.mysql.query(sql1)
+    //recentpost
+    let sql = 'SELECT article.id as id,'+
+                 'article.title as title,'+
+                 'article.introduce as introduce,'+
+                 "FROM_UNIXTIME(article.addTime,'%Y-%m-%d' ) as addTime,"+
+                 'article.view_count as view_count ,'+
+                 'article.image as image ,'+
+                 'type.typeName as typeName '+
+                 'FROM article LEFT JOIN type ON article.type_id = type.Id '+
+                 'WHERE article.isTop = 1  AND article.type_id <> 99 '+
+                 'ORDER BY article.id DESC'
+    const resList = await this.app.mysql.query(sql)
+    this.ctx.body = {
+      topList: topres,
+      list: resList
+    }
   }
 
   async getArticleById() {
